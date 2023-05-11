@@ -1,0 +1,18 @@
+name: 'Test in Container'
+description: 'Run tests in a Docker container'
+inputs:
+  apt-key-url:
+    description: 'URL to public key of repository'
+    required: true
+  apt-repo-line:
+    description: 'Line to add to apt sources'
+    required: true
+  target-package:
+    description: 'Name of package to install'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.apt-key-url }}
+    - ${{ inputs.apt-repo-line }}    
+    - ${{ inputs.target-package }}
